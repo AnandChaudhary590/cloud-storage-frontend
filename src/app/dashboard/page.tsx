@@ -100,8 +100,7 @@ const handleProfileImageUpload = async () => {
 
     formData.append("image", selectedImage);
 
-    const apiUrl = "http://localhost:5000";
-
+    const apiUrl = "https://cloud-storage-backend-u4cd.onrender.com";
     const response = await fetch(
       `${apiUrl}/api/auth/profile-image`,
       {
