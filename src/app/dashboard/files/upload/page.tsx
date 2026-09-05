@@ -1,10 +1,10 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import api from "../../../../services1/api";
 
-export default function UploadFilePage() {
+function UploadFileContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 const folderId = searchParams.get("folder");
@@ -260,5 +260,19 @@ if (folderId) {
       </section>
 
     </main>
+  );
+}
+
+export default function UploadFilePage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen bg-slate-50 p-8 text-center">
+          <p className="text-slate-500">Loading upload page...</p>
+        </main>
+      }
+    >
+      <UploadFileContent />
+    </Suspense>
   );
 }

@@ -72,8 +72,7 @@ export default function SharedFilesPage() {
 
       const blob = new Blob([response.data], {
         type:
-          response.headers["content-type"] ||
-          "application/octet-stream",
+  String(response.headers["content-type"] || "application/octet-stream"),
       });
 
       const url = window.URL.createObjectURL(blob);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import api from "../../../services1/api";
 
@@ -21,7 +21,7 @@ interface Folder {
   parent_id?: string | null;
 }
 
-export default function MyFilesPage() {
+function MyFilesContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -572,8 +572,7 @@ const handlePublicShare = async (id: string) => {
         [response.data],
         {
           type:
-            response.headers["content-type"] ||
-            "application/octet-stream",
+  String(response.headers["content-type"] || "application/octet-stream"),
         }
       );
 
@@ -618,8 +617,7 @@ const handlePublicShare = async (id: string) => {
         [response.data],
         {
           type:
-            response.headers["content-type"] ||
-            "application/octet-stream",
+  String(response.headers["content-type"] || "application/octet-stream"),
         }
       );
 
@@ -1265,5 +1263,19 @@ const handlePublicShare = async (id: string) => {
       </section>
 
     </main>
+  );
+}
+
+export default function MyFilesPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen bg-slate-50 p-8 text-center">
+          <p className="text-slate-500">Loading files...</p>
+        </main>
+      }
+    >
+      <MyFilesContent />
+    </Suspense>
   );
 }
