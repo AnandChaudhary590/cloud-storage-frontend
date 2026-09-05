@@ -9,7 +9,7 @@ export default function Home() {
   useEffect(() => {
     const testBackend = async () => {
       try {
-        const response = await api.get("/health");
+        const response = await api.get("/api/health");
 
         setMessage(
           response.data?.message || "Backend connected successfully!"
