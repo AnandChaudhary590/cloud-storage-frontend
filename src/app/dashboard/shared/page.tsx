@@ -44,7 +44,7 @@ export default function SharedFilesPage() {
         }
       );
 
-      setShares(response.data?.shares || []);
+      setShares(response.data?.files || []);
     } catch (error: any) {
       console.error("Shared files error:", error);
 
@@ -184,7 +184,7 @@ export default function SharedFilesPage() {
                             </p>
 
                             <p className="text-xs text-slate-400">
-                              Shared file
+                              Shared files
                             </p>
                           </div>
 
